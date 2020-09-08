@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
 import Main from './Components/MainComponent';
 import { DISHES } from './shared/dishes';
 import './App.css';
+
+const store=ConfigureStore();
 
 class App extends Component{
   constructor(props){
@@ -13,11 +17,14 @@ class App extends Component{
   }
   render(){
     return(
-      <div className='App'>
-        <BrowserRouter>
-          <Main/>
-        </BrowserRouter>
-      </div>
+      
+        <Provider store={store}>
+          <BrowserRouter>
+            <div className='App'>
+              <Main/>
+            </div>
+          </BrowserRouter>
+        </Provider>
     );
   }
 }
